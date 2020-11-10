@@ -1,0 +1,13 @@
+.navlink a {
+	text-decoration: none;
+	margin: 0 2rem;
+	color: #ffffff;
+}
+
+.brandLink {
+	text-decoration: none;
+	margin: 0 2rem;
+	color: #ffffff;
+	font-size: 2rem;
+	font-weight: bold;
+}

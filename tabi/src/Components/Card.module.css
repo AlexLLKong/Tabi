@@ -1,0 +1,19 @@
+.card {
+	position: relative;
+	box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 1);
+	min-width: 15rem;
+	min-height: 25rem;
+	text-align: left;
+	margin: 2rem;
+}
+.card h3 {
+	color: #000000;
+	margin-top: 0;
+}
+.footer {
+	position: absolute;
+	padding: 1rem;
+	bottom: 0;
+	background-color: #b1b1b1;
+	width: calc(100% - 2rem);
+}

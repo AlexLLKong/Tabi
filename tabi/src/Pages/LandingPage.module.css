@@ -1,0 +1,16 @@
+.bgCharacter {
+	position: absolute;
+	color: #3a3a3a;
+	font-size: 30rem;
+	font-weight: 600;
+	z-index: -1;
+}
+.link {
+	background-color: #222222;
+	color: #ffffff;
+	border: 0;
+	padding: 1.5rem 3rem;
+	font-size: 1.25rem;
+	cursor: pointer;
+	text-decoration: none;
+}

@@ -1,0 +1,16 @@
+.mainContainer {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.contentContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #777777;
+}
+.editField {
+	border-radius: 0%;
+	border: 0;
+	padding: 1rem;
+}
