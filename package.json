@@ -1,0 +1,29 @@
+{
+	"name": "tabi",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"start": "node -r esm server.js",
+		"server": "nodemon -r esm server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AlexLLKong/Tabi.git"
+	},
+	"author": "Alex Kong",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/AlexLLKong/Tabi/issues"
+	},
+	"homepage": "https://github.com/AlexLLKong/Tabi#readme",
+	"dependencies": {
+		"concurrently": "^5.3.0",
+		"esm": "^3.2.25",
+		"express": "^4.17.1",
+		"mongoose": "^5.10.13"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.6"
+	}
+}
