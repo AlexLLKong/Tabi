@@ -1,15 +1,20 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import { mongoURI } from './config/keys'
+import config from 'config'
 import { router as items } from './routes/api/items'
 import { router as template } from './routes/api/template'
 import { router as trip } from './routes/api/trip'
+import { router as users } from './routes/api/users'
+import { router as auth } from './routes/api/auth'
 const app = express()
 
 app.use(express.json())
 
 mongoose
-	.connect(mongoURI)
+	.connect(config.get('mongoURI'), {
+		useUnifiedTopology: true,
+		useCreateIndex: true,
+	})
 	.then(() => {
 		console.log('MongoDB Connected')
 	})
@@ -18,6 +23,8 @@ mongoose
 app.use('/api/items/', items)
 app.use('/api/template/', template)
 app.use('/api/trip/', trip)
+app.use('/api/users/', users)
+app.use('/api/auth/', auth)
 const port = process.env.PORT || 5000
 
 app.listen(port, () => {

@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { Item } from '../../models/Item'
+import auth from '../../middleware/auth'
 export const router = Router()
 
 // @route GET api/items
@@ -15,9 +16,9 @@ router.get('/', (req, res) => {
 
 // @route POST api/items
 // @desc Create an Item
-// @access Public
+// @access Private
 
-router.post('/', (req, res) => {
+router.post('/', auth, (req, res) => {
 	const newItem = new Item({
 		name: req.body.name,
 	})
@@ -29,9 +30,9 @@ router.post('/', (req, res) => {
 
 // @route DELETE api/items/:id
 // @desc Delete an Item
-// @access Public
+// @access Private
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', auth, (req, res) => {
 	Item.findById(req.params.id)
 		.then(item => item.remove().then(() => res.json({ success: true })))
 		// eslint-disable-next-line no-unused-vars
@@ -40,9 +41,9 @@ router.delete('/:id', (req, res) => {
 
 // @route UPDATE api/items/:id
 // @desc Update an Item
-// @access Public
+// @access Private
 
-router.post('/:id', (req, res) => {
+router.post('/:id', auth, (req, res) => {
 	const newName = req.body.name
 
 	Item.findById(req.params.id).then(item => {
