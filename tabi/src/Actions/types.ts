@@ -8,3 +8,19 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const REGISTER_FAIL = 'REGISTER_FAIL'
 export const GET_ERRORS = 'GET_ERRORS'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
+
+export type UserStateType = {
+	token: string | null
+	isAuthenticated: boolean
+	isLoading: boolean
+	user: object | null
+}
+export type ErrorStateType = {
+	msg: object
+	status: string | null
+	id: string | null
+}
+export type StateType = {
+	userState: UserStateType
+	errorState: ErrorStateType
+}

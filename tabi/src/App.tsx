@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { UserProvider } from './Context/UserContext'
+import { Provider } from 'react-redux'
+import store from './store'
+import { loadUser } from './Actions/AuthActions'
 import { Navbar } from './Components/Navbar'
 import { LandingPage } from './Pages/LandingPage'
 import { MyTripsPage } from './Pages/MyTripsPage'
 import { PickTemplatePage } from './Pages/PickTemplatePage'
 import { TripEditorPage } from './Pages/TripEditorPage'
 function App() {
+	useEffect(() => {
+		store.dispatch(loadUser())
+	}, [])
 	return (
-		<UserProvider>
+		<Provider store={store}>
 			<Router>
 				<div>
 					<div>
@@ -33,7 +38,7 @@ function App() {
 					</div>
 				</div>
 			</Router>
-		</UserProvider>
+		</Provider>
 	)
 }
 

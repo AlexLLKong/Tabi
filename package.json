@@ -4,8 +4,11 @@
 	"description": "",
 	"main": "server.js",
 	"scripts": {
+		"client-install": "npm install --prefix tabi",
 		"start": "node -r esm server.js",
-		"server": "nodemon -r esm server.js"
+		"server": "nodemon -r esm server.js",
+		"client": "npm start --prefix tabi",
+		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
 	"repository": {
 		"type": "git",

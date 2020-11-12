@@ -7,7 +7,7 @@ import {
 	LOGOUT_SUCCESS,
 	REGISTER_SUCCESS,
 	REGISTER_FAIL,
-} from './types'
+} from '../Actions/types'
 
 const initialState = {
 	token: localStorage.getItem('token'),
@@ -16,7 +16,7 @@ const initialState = {
 	user: null,
 }
 
-export const UserReducer = (state = initialState, action: any) => {
+export const AuthReducer = (state = initialState, action: any) => {
 	switch (action.type) {
 		case USER_LOADING:
 			return {
