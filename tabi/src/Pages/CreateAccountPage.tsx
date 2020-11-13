@@ -72,7 +72,7 @@ const CreateAccountPage = ({
 					placeholder="Password"
 					onChange={handleChangePassword}
 				/>
-				<button>Register</button>
+				<button className={styles.btn}>Register</button>
 				{msg ? <p className={styles.error}>{msg}</p> : null}
 			</form>
 		</Wrapper>

@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { IAppNavbar, IAuthReduxProps } from '../interfaces'
 import { connect } from 'react-redux'
+import Logout from './Logout'
 import styles from './Navbar.module.css'
 import navlinkStyles from './Navlink.module.css'
 
@@ -16,6 +17,9 @@ const Navbar = ({ auth }: IAppNavbar) => {
 			</li>
 			<li className={navlinkStyles.navlink}>
 				<NavLink to="/tripeditor">Trip Editor</NavLink>
+			</li>
+			<li className={navlinkStyles.navlink}>
+				<Logout />
 			</li>
 		</ul>
 	)

@@ -57,7 +57,7 @@ const LoginPage = ({
 					placeholder="Password"
 					onChange={handleChangePassword}
 				/>
-				<button>Login</button>
+				<button className={styles.btn}>Login</button>
 				{msg ? <p className={styles.error}>{msg}</p> : null}
 			</form>
 		</Wrapper>

@@ -16,7 +16,7 @@ input {
 	margin-bottom: 1rem;
 }
 
-button {
+.btn {
 	background-color: #111111;
 	color: #ffffff;
 	border: 0;
