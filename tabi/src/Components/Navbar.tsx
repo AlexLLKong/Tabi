@@ -25,6 +25,9 @@ const Navbar = ({ auth }: IAppNavbar) => {
 				<NavLink to="/about">About</NavLink>
 			</li>
 			<li className={navlinkStyles.navlink}>
+				<NavLink to="/login">Login</NavLink>
+			</li>
+			<li className={navlinkStyles.navlink}>
 				<NavLink to="/createaccount">Create Account</NavLink>
 			</li>
 		</ul>

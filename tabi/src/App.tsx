@@ -9,6 +9,7 @@ import { MyTripsPage } from './Pages/MyTripsPage'
 import { PickTemplatePage } from './Pages/PickTemplatePage'
 import { TripEditorPage } from './Pages/TripEditorPage'
 import CreateAccountPage from './Pages/CreateAccountPage'
+import LoginPage from './Pages/LoginPage'
 function App() {
 	useEffect(() => {
 		store.dispatch(loadUser())
@@ -20,6 +21,9 @@ function App() {
 					<div>
 						<Navbar />
 						<Switch>
+							<Route path="/login">
+								<LoginPage />
+							</Route>
 							<Route path="/createaccount">
 								<CreateAccountPage />
 							</Route>
