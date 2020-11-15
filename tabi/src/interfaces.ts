@@ -54,6 +54,24 @@ export interface IConfigHeaders {
 	}
 }
 
+// TEMPLATES
+export interface ITemplate {
+	name: string
+	html: string
+	css: string
+	img: [string]
+	preview: string
+}
+export interface ITemplateReduxProps {
+	template: { templates: [ITemplate] }
+	error: IError
+}
+
+export interface ITemplatePage {
+	template: { templates: [ITemplate] }
+	loadTemplates(): void
+}
+
 // NAVBAR
 export interface IAppNavbar {
 	auth?: {

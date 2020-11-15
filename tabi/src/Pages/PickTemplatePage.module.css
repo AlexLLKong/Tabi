@@ -1,0 +1,5 @@
+.cardImg {
+	object-fit: fill;
+	max-width: 100%;
+	height: auto;
+}

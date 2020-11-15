@@ -8,7 +8,7 @@ import { router as users } from './routes/api/users'
 import { router as auth } from './routes/api/auth'
 const app = express()
 
-app.use(express.json())
+app.use(express.json({ limit: '16mb' }))
 
 mongoose
 	.connect(config.get('mongoURI'), {

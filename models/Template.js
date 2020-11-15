@@ -12,6 +12,12 @@ const TemplateSchema = new Schema({
 	css: {
 		type: String,
 	},
+	imgs: {
+		type: [String],
+	},
+	preview: {
+		type: String,
+	},
 	date: {
 		type: Date,
 		default: Date.now,

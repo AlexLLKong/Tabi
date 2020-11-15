@@ -23,6 +23,8 @@ router.post('/', (req, res) => {
 		name: req.body.name,
 		html: req.body.html,
 		css: req.body.css,
+		preview: req.body.preview,
+		imgs: [...req.body.imgs],
 	})
 	newTemplate
 		.save()
@@ -54,6 +56,8 @@ router.post('/:id', (req, res) => {
 			template.name = req.body.name
 			template.html = req.body.html
 			template.css = req.body.css
+			template.preview = req.body.preview
+			template.imgs = [...req.body.imgs]
 			template
 				.save()
 				.then(template => res.json(template))
