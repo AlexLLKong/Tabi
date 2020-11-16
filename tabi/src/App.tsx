@@ -7,7 +7,7 @@ import Navbar from './Components/Navbar'
 import { LandingPage } from './Pages/LandingPage'
 import { MyTripsPage } from './Pages/MyTripsPage'
 import PickTemplatePage from './Pages/PickTemplatePage'
-import { TripEditorPage } from './Pages/TripEditorPage'
+import TripEditorPage from './Pages/TripEditorPage'
 import CreateAccountPage from './Pages/CreateAccountPage'
 import LoginPage from './Pages/LoginPage'
 function App() {

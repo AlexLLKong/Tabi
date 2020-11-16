@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import styles from './EditFieldContainer.module.css'
 import { Wrapper } from './Wrapper'
-type Props = { content: JSX.Element }
+type Props = { content: JSX.Element | JSX.Element[] }
 const useInput = (
 	type: string
 ): [string, JSX.Element, React.Dispatch<React.SetStateAction<string>>] => {
@@ -46,7 +46,7 @@ export const EditFieldContainer: FC<Props> = ({ content }) => {
 				)
 			}
 		}
-	}, [setValue])
+	}, [setValue, content])
 	useEffect(() => {
 		if (editElement) editElement.innerHTML = newValue
 	}, [newValue, editElement])

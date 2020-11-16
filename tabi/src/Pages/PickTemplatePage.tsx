@@ -2,11 +2,17 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { ITemplatePage, ITemplateReduxProps } from '../interfaces'
 import { loadTemplates } from '../Actions/TemplateActions'
+import { selectTrip } from '../Actions/TripEditorActions'
+import { Link } from 'react-router-dom'
 import { Wrapper } from '../Components/Wrapper'
 import { Card } from '../Components/Card'
 import pageStyles from './Pages.module.css'
 import styles from './PickTemplatePage.module.css'
-const PickTemplatePage = ({ template, loadTemplates }: ITemplatePage) => {
+const PickTemplatePage = ({
+	template,
+	loadTemplates,
+	selectTrip,
+}: ITemplatePage) => {
 	useEffect(() => {
 		loadTemplates()
 	}, [loadTemplates])
@@ -14,18 +20,27 @@ const PickTemplatePage = ({ template, loadTemplates }: ITemplatePage) => {
 	const generateCards = (): JSX.Element[] => {
 		let returnArr: JSX.Element[] = []
 		for (let i: number = 0; i < templates.length; i++) {
+			const handleTemplateClick = () => {
+				selectTrip(templates[i])
+				// console.log(templates[i])
+			}
 			returnArr.push(
-				<Card
+				<Link
+					to="/tripeditor"
 					key={`Card${i}`}
-					img={
-						<img
-							src={templates[i].preview}
-							alt={`${templates[i].name} preview`}
-							className={styles.cardImg}
-						/>
-					}
-					children={<h3>{templates[i].name}</h3>}
-				/>
+					onClick={handleTemplateClick}
+				>
+					<Card
+						img={
+							<img
+								src={templates[i].preview}
+								alt={`${templates[i].name} preview`}
+								className={styles.cardImg}
+							/>
+						}
+						children={<h3>{templates[i].name}</h3>}
+					/>
+				</Link>
 			)
 		}
 		return returnArr
@@ -41,4 +56,6 @@ const PickTemplatePage = ({ template, loadTemplates }: ITemplatePage) => {
 const mapStatetoProps = (state: ITemplateReduxProps) => ({
 	template: state.template,
 })
-export default connect(mapStatetoProps, { loadTemplates })(PickTemplatePage)
+export default connect(mapStatetoProps, { loadTemplates, selectTrip })(
+	PickTemplatePage
+)

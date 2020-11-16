@@ -10,6 +10,10 @@ export const GET_ERRORS = 'GET_ERRORS'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 export const TEMPLATES_LOADING = 'TEMPLATES_LOADING'
 export const TEMPLATES_LOADED = 'TEMPLATES_LOADED'
+export const TRIP_SELECTED = 'TRIP_SELECTED'
+export const NO_TRIP_SELECTED = 'NO_TRIP_SELECTED'
+// export const TRIPS_LOADING = 'TRIPS_LOADING'
+// export const TRIPS_LOADED = 'TRIPS_LOADED'
 
 export type UserStateType = {
 	token: string | null

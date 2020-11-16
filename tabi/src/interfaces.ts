@@ -59,7 +59,7 @@ export interface ITemplate {
 	name: string
 	html: string
 	css: string
-	img: [string]
+	imgs: [string]
 	preview: string
 }
 export interface ITemplateReduxProps {
@@ -70,6 +70,24 @@ export interface ITemplateReduxProps {
 export interface ITemplatePage {
 	template: { templates: [ITemplate] }
 	loadTemplates(): void
+	selectTrip(trip: ITrip): void
+}
+
+// TRIPS
+export interface ITrip {
+	name: string
+	html: string
+	css: string
+	imgs: [string]
+	preview: string
+}
+
+export interface ITripReduxProps {
+	trip: { selectedTrip: ITrip }
+}
+
+export interface ITripEditorPage {
+	trip: { selectedTrip: ITrip }
 }
 
 // NAVBAR
