@@ -17,3 +17,12 @@
 .pointer {
 	cursor: pointer;
 }
+.btn {
+	background-color: #222222;
+	color: #ffffff;
+	border: 0;
+	padding: 1.5rem 3rem;
+	font-size: 1.25rem;
+	cursor: pointer;
+	text-decoration: none;
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import parse from 'html-react-parser'
 import { connect } from 'react-redux'
 import { ITripReduxProps, ITripEditorPage } from '../interfaces'
-import { EditFieldContainer } from '../Components/EditFieldContainer'
+import EditFieldContainer from '../Components/EditFieldContainer'
 import { Wrapper } from '../Components/Wrapper'
 // import pageStyles from './Pages.module.css'
 //type Props = { content: JSX.Element }

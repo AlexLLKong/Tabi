@@ -22,6 +22,7 @@ router.post('/', (req, res) => {
 		name: req.body.name,
 		html: req.body.html,
 		css: req.body.css,
+		imgs: [...req.body.imgs],
 	})
 
 	newTrip
@@ -63,6 +64,7 @@ router.post('/:id', (req, res) => {
 			trip.name = req.body.name
 			trip.html = req.body.html
 			trip.css = req.body.css
+			trip.imgs = [...req.body.imgs]
 			trip.save()
 				.then(trip => res.json(trip))
 				.catch(err => console.log(err))

@@ -56,10 +56,11 @@ export interface IConfigHeaders {
 
 // TEMPLATES
 export interface ITemplate {
+	_id?: string
 	name: string
 	html: string
 	css: string
-	imgs: [string]
+	imgs: string[]
 	preview: string
 }
 export interface ITemplateReduxProps {
@@ -75,10 +76,11 @@ export interface ITemplatePage {
 
 // TRIPS
 export interface ITrip {
+	_id?: string
 	name: string
 	html: string
 	css: string
-	imgs: [string]
+	imgs: string[]
 	preview: string
 }
 
@@ -87,6 +89,16 @@ export interface ITripReduxProps {
 }
 
 export interface ITripEditorPage {
+	trip: { selectedTrip: ITrip }
+}
+
+export interface IEditFieldContainer {
+	content: JSX.Element | JSX.Element[] | null
+	trip: { selectedTrip: ITrip }
+	saveTrip(trip: ITrip): void
+}
+
+export interface IEditFieldContainerReduxProps {
 	trip: { selectedTrip: ITrip }
 }
 
