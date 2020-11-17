@@ -7,6 +7,7 @@
 	text-align: left;
 	display: flex;
 	flex-direction: column;
+	margin: 1rem;
 }
 .card h3 {
 	color: #000000;

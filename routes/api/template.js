@@ -9,6 +9,7 @@ export const router = Router()
 
 router.get('/', (req, res) => {
 	Template.find()
+		.select('-_id')
 		.sort()
 		.then(templates => res.json(templates))
 		.catch(err => console.log(err))

@@ -1,11 +1,18 @@
 import React, { MouseEvent, FC } from 'react'
-type Props = { className: string; onClick(e: MouseEvent<HTMLElement>): void }
+type Props = {
+	disabled?: boolean
+	className: string
+	onClick(e: MouseEvent<HTMLElement>): void
+}
 export const Button: FC<Props> = ({
+	disabled,
 	className: classes,
 	onClick: handleClick,
 	children,
-}) => (
-	<button className={classes} onClick={handleClick}>
-		{children}
-	</button>
-)
+}) => {
+	return (
+		<button disabled={disabled} className={classes} onClick={handleClick}>
+			{children}
+		</button>
+	)
+}

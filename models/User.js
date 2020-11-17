@@ -14,6 +14,9 @@ const UserSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	trips: {
+		type: [String],
+	},
 	register_date: {
 		type: Date,
 		default: Date.now,

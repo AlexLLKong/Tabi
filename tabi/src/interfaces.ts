@@ -15,6 +15,7 @@ export interface IMsg {
 
 // AUTH
 export interface IUser {
+	id: string
 	name?: string
 	email: string
 	password: string
@@ -95,11 +96,42 @@ export interface ITripEditorPage {
 export interface IEditFieldContainer {
 	content: JSX.Element | JSX.Element[] | null
 	trip: { selectedTrip: ITrip }
-	saveTrip(trip: ITrip): void
+	auth: { user: IUser; isAuthenticated: boolean }
+	saveTrip(trip: ITrip, userID: string): void
 }
 
 export interface IEditFieldContainerReduxProps {
 	trip: { selectedTrip: ITrip }
+	auth: { user: IUser; isAuthenticated: boolean }
+}
+
+export interface ITripPreview {
+	_id: string
+	name: string
+	preview: string
+}
+
+export interface IMyTripsPageReduxProps {
+	auth: {
+		isAuthenticated: boolean
+		user: IUser
+	}
+	trip: {
+		loadingTrips: boolean
+		tripPreviews: [ITripPreview]
+	}
+}
+export interface IMyTripsPage {
+	auth: {
+		isAuthenticated: boolean
+		user: IUser
+	}
+	trip: {
+		loadingTrips: boolean
+		tripPreviews: [ITripPreview]
+	}
+	getUserTrips(): void
+	getTrip(tripID: string): void
 }
 
 // NAVBAR

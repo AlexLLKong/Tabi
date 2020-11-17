@@ -1,4 +1,8 @@
-import React, { FC, MouseEvent } from 'react'
+import React, { useEffect, MouseEvent } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getUserTrips, getTrip } from '../Actions/TripActions'
+import { IMyTripsPageReduxProps, IMyTripsPage } from '../interfaces'
 import { Wrapper } from '../Components/Wrapper'
 import { Card } from '../Components/Card'
 import { Button } from '../Components/Button'
@@ -9,39 +13,70 @@ const tempFn = (e: MouseEvent<HTMLElement>): void => {
 	console.log('Placeholder button on click handler clicked')
 }
 
-const generateCards = (numCards: number): JSX.Element[] => {
-	let returnArr: JSX.Element[] = []
-	for (let i: number = 0; i < numCards; i++) {
-		returnArr.push(
-			<Card
-				key={`Card${i}`}
-				children={
-					<div>
-						<h3>Example Card {i + 1}</h3>
-						<div className={styles.buttons}>
-							<Button
-								className={styles.btn}
-								onClick={tempFn}
-								children={'Share'}
-							/>
-							<Button
-								className={styles.btn}
-								onClick={tempFn}
-								children={'Delete'}
-							/>
+const MyTripsPage = ({ auth, trip, getUserTrips, getTrip }: IMyTripsPage) => {
+	useEffect(() => {
+		getUserTrips()
+	}, [getUserTrips])
+
+	const loadingContent: JSX.Element = (
+		<div>
+			<h3>Loading Trips...</h3>
+		</div>
+	)
+	const { tripPreviews } = trip
+	const generateCards = (): JSX.Element[] => {
+		return tripPreviews.map<JSX.Element>(preview => {
+			const editHandler = (e: MouseEvent) => {
+				getTrip(preview._id)
+			}
+			return (
+				<Card
+					key={`${preview._id}`}
+					children={
+						<div>
+							<h3>{preview.name}</h3>
+							<div className={styles.buttons}>
+								<Link to="/tripeditor">
+									<Button
+										className={styles.btn}
+										onClick={editHandler}
+										children={'Edit'}
+									/>
+								</Link>
+								<Button
+									className={styles.btn}
+									onClick={tempFn}
+									children={'Share'}
+								/>
+								<Button
+									className={styles.btn}
+									onClick={tempFn}
+									children={'Delete'}
+									disabled={true}
+								/>
+							</div>
 						</div>
-					</div>
-				}
-			/>
-		)
+					}
+				/>
+			)
+		})
 	}
-	return returnArr
+
+	return (
+		<div>
+			<Wrapper>
+				<h1 className={pageStyles.title}>My Trips</h1>
+				<div className={pageStyles.cardContainer}>
+					{trip.loadingTrips ? loadingContent : generateCards()}
+				</div>
+			</Wrapper>
+		</div>
+	)
 }
-export const MyTripsPage: FC = () => (
-	<div>
-		<Wrapper>
-			<h1 className={pageStyles.title}>My Trips</h1>
-			<div className={pageStyles.cardContainer}>{generateCards(3)}</div>
-		</Wrapper>
-	</div>
-)
+
+const mapStatetoProps = (state: IMyTripsPageReduxProps) => ({
+	auth: state.auth,
+	trip: state.trip,
+})
+
+export default connect(mapStatetoProps, { getUserTrips, getTrip })(MyTripsPage)

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styles from './EditFieldContainer.module.css'
 import { connect } from 'react-redux'
-import { saveTrip } from '../Actions/TripEditorActions'
+import { saveTrip } from '../Actions/TripActions'
 import { Wrapper } from './Wrapper'
 import { Button } from './Button'
 import {
 	IEditFieldContainer,
 	IEditFieldContainerReduxProps,
+	ITrip,
 } from '../interfaces'
 
 const useInput = (
@@ -30,6 +31,7 @@ const getEditableElements = (): NodeListOf<HTMLElement> => {
 const EditFieldContainer = ({
 	content,
 	trip,
+	auth,
 	saveTrip,
 }: IEditFieldContainer) => {
 	let [editElement, setEditElement] = useState<HTMLElement | null>(null)
@@ -72,26 +74,30 @@ const EditFieldContainer = ({
 	useEffect(() => {
 		if (editElement) editElement.innerHTML = newValue
 		if (nameElement) setName(nameElement.innerHTML)
-		if (containerElement)
-			setHtml(JSON.stringify(containerElement.outerHTML))
+		if (containerElement) setHtml(containerElement.outerHTML)
 	}, [newValue, editElement, nameElement, containerElement])
 
 	const handleSaveTrip = (e: any) => {
 		e.preventDefault()
-		const newTrip = {
+		const newTrip: ITrip = {
 			name: name,
-			html: JSON.stringify(html),
+			html: html,
 			css: trip.selectedTrip.css,
 			imgs: [...trip.selectedTrip.imgs],
 			preview: '',
+			_id: trip.selectedTrip._id ? trip.selectedTrip._id : '',
 		}
-		saveTrip(newTrip)
+		saveTrip(newTrip, auth.user.id)
 	}
 	return (
 		<div className={styles.mainContainer}>
 			<Wrapper>
 				{newValueInput}
-				<Button className={styles.btn} onClick={handleSaveTrip}>
+				<Button
+					disabled={auth.isAuthenticated ? false : true}
+					className={styles.btn}
+					onClick={handleSaveTrip}
+				>
 					Save Trip
 				</Button>
 			</Wrapper>
@@ -101,5 +107,6 @@ const EditFieldContainer = ({
 }
 const mapStateToProps = (state: IEditFieldContainerReduxProps) => ({
 	trip: state.trip,
+	auth: state.auth,
 })
 export default connect(mapStateToProps, { saveTrip })(EditFieldContainer)

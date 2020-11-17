@@ -15,8 +15,11 @@ export const NO_TRIP_SELECTED = 'NO_TRIP_SELECTED'
 export const SAVING_TRIP = 'SAVING_TRIP'
 export const TRIP_SAVE_SUCCESS = 'TRIP_SAVE_SUCCESS'
 export const TRIP_SAVE_FAILED = 'TRIP_SAVE_FAILED'
-// export const TRIPS_LOADING = 'TRIPS_LOADING'
-// export const TRIPS_LOADED = 'TRIPS_LOADED'
+export const TRIPS_LOADING = 'TRIPS_LOADING'
+export const TRIPS_LOADED = 'TRIPS_LOADED'
+export const TRIP_LOADING = 'TRIP_LOADING'
+export const TRIP_LOADED = 'TRIP_LOADED'
+export const TRIP_LOADING_FAILED = 'TRIP_LOADING_FAILED'
 
 export type UserStateType = {
 	token: string | null

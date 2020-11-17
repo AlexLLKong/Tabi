@@ -5,6 +5,10 @@ import mongoose, { Schema } from 'mongoose'
 // insert edits when needed (like when the user
 // sees it).
 export const TripSchema = new Schema({
+	_userID: {
+		type: String,
+		required: true,
+	},
 	name: {
 		type: String,
 		required: true,

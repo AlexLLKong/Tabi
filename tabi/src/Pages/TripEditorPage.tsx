@@ -8,11 +8,8 @@ import { Wrapper } from '../Components/Wrapper'
 //type Props = { content: JSX.Element }
 const mockContent: JSX.Element = (
 	<div>
-		<h1 data-editable="true">Page Title</h1>
-		<p data-editable="true">
-			Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-			Voluptates, est?
-		</p>
+		<h1 data-editable="true">Loading...</h1>
+		<p data-editable="true"></p>
 	</div>
 )
 const TripEditorPage = ({ trip }: ITripEditorPage) => {

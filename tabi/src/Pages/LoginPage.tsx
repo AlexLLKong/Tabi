@@ -22,7 +22,7 @@ const LoginPage = ({
 
 	const handleOnSubmit = (e: any) => {
 		e.preventDefault()
-		const user = { email, password }
+		const user = { id: '', email, password }
 		login(user)
 	}
 

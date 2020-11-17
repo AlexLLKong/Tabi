@@ -27,6 +27,7 @@ const CreateAccountPage = ({
 	const handleOnSubmit = (e: any) => {
 		e.preventDefault()
 		const user = {
+			id: '',
 			name,
 			email,
 			password,

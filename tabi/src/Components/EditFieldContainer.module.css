@@ -26,3 +26,8 @@
 	cursor: pointer;
 	text-decoration: none;
 }
+
+.btn:disabled {
+	background-color: #cccccc;
+	cursor: default;
+}
