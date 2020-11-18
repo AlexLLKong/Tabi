@@ -133,6 +133,7 @@ export interface IMyTripsPage {
 	}
 	getUserTrips(): void
 	getTrip(tripID: string): void
+	deleteTrip(tripID: string): void
 }
 
 // NAVBAR

@@ -20,6 +20,9 @@ export const TRIPS_LOADED = 'TRIPS_LOADED'
 export const TRIP_LOADING = 'TRIP_LOADING'
 export const TRIP_LOADED = 'TRIP_LOADED'
 export const TRIP_LOADING_FAILED = 'TRIP_LOADING_FAILED'
+export const DELETING_TRIP = 'DELETING_TRIP'
+export const TRIP_DELETED = 'TRIP_DELETED'
+export const TRIP_DELETION_FAILED = 'TRIP_DELETION_FAILED'
 
 export type UserStateType = {
 	token: string | null

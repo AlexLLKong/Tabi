@@ -10,6 +10,9 @@ import {
 	TRIP_LOADING,
 	TRIP_LOADED,
 	TRIP_LOADING_FAILED,
+	DELETING_TRIP,
+	TRIP_DELETED,
+	TRIP_DELETION_FAILED,
 } from './types'
 import { ITrip } from '../interfaces'
 import { tokenConfig } from './AuthActions'
@@ -48,7 +51,6 @@ export const saveTrip = (
 		preview,
 		userID,
 	})
-	console.log(userID)
 	ax.post(`trip${_id ? '/' + _id : ''}`, body, config)
 		.then(res => {
 			dispatch({
@@ -96,6 +98,26 @@ export const getTrip = (tripID: string) => (
 		.catch(err => {
 			dispatch({
 				type: TRIP_LOADING_FAILED,
+			})
+		})
+}
+
+export const deleteTrip = (tripID: string) => (
+	dispatch: Function,
+	getState: Function
+) => {
+	dispatch({ type: DELETING_TRIP })
+	const config = tokenConfig(getState)
+	ax.delete(`trip/${tripID}`, config)
+		.then(res =>
+			dispatch({
+				type: TRIP_DELETED,
+				payload: res.data,
+			})
+		)
+		.catch(err => {
+			dispatch({
+				type: TRIP_DELETION_FAILED,
 			})
 		})
 }

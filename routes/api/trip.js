@@ -66,17 +66,33 @@ router.post('/', auth, (req, res) => {
 
 router.delete('/:id', auth, (req, res) => {
 	Trip.findById(req.params.id)
-		.then(trip =>
-			trip
-				.remove()
-				.then(() => {
-					res.json({ success: true })
+		.then(trip => {
+			User.findById(trip._userID)
+				.then(user => {
+					user.trips = user.trips.filter(id => id !== req.params.id)
+					user.save()
+						.then(() => {
+							trip.remove()
+								.then(
+									Trip.find()
+										.where('_id')
+										.in(user.trips)
+										.select(['_id', 'name', 'preview'])
+										.exec((err, records) => {
+											if (err) console.log(err)
+											res.json(records)
+										})
+								)
+								.catch(err => console.log(err))
+						})
+						.catch(err => console.log(err))
 				})
-				.catch(err => {
-					res.json({ success: false })
-					console.log(err)
-				})
-		)
+				.catch(err => console.log(err))
+		})
+		.catch(err => {
+			res.json({ success: false })
+			console.log(err)
+		})
 		.catch(err => {
 			res.status(404).json({ success: false })
 			console.log(err)

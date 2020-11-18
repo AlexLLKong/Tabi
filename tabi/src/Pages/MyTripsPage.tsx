@@ -1,19 +1,21 @@
 import React, { useEffect, MouseEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getUserTrips, getTrip } from '../Actions/TripActions'
+import { getUserTrips, getTrip, deleteTrip } from '../Actions/TripActions'
 import { IMyTripsPageReduxProps, IMyTripsPage } from '../interfaces'
 import { Wrapper } from '../Components/Wrapper'
 import { Card } from '../Components/Card'
 import { Button } from '../Components/Button'
 import pageStyles from './Pages.module.css'
 import styles from './MyTripsPage.module.css'
-const tempFn = (e: MouseEvent<HTMLElement>): void => {
-	e.preventDefault()
-	console.log('Placeholder button on click handler clicked')
-}
 
-const MyTripsPage = ({ auth, trip, getUserTrips, getTrip }: IMyTripsPage) => {
+const MyTripsPage = ({
+	auth,
+	trip,
+	getUserTrips,
+	getTrip,
+	deleteTrip,
+}: IMyTripsPage) => {
 	useEffect(() => {
 		getUserTrips()
 	}, [getUserTrips])
@@ -34,6 +36,9 @@ const MyTripsPage = ({ auth, trip, getUserTrips, getTrip }: IMyTripsPage) => {
 				navigator.clipboard.writeText(
 					`http://localhost:3000/tripeditor/${preview._id}`
 				)
+			}
+			const deleteHandler = (e: MouseEvent) => {
+				deleteTrip(preview._id)
 			}
 			return (
 				<Card
@@ -56,9 +61,8 @@ const MyTripsPage = ({ auth, trip, getUserTrips, getTrip }: IMyTripsPage) => {
 								/>
 								<Button
 									className={styles.btn}
-									onClick={tempFn}
+									onClick={deleteHandler}
 									children={'Delete'}
-									disabled={true}
 								/>
 							</div>
 						</div>
@@ -85,4 +89,6 @@ const mapStatetoProps = (state: IMyTripsPageReduxProps) => ({
 	trip: state.trip,
 })
 
-export default connect(mapStatetoProps, { getUserTrips, getTrip })(MyTripsPage)
+export default connect(mapStatetoProps, { getUserTrips, getTrip, deleteTrip })(
+	MyTripsPage
+)

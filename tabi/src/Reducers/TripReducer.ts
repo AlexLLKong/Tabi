@@ -8,6 +8,9 @@ import {
 	TRIP_LOADING,
 	TRIP_LOADED,
 	TRIP_LOADING_FAILED,
+	TRIP_DELETION_FAILED,
+	TRIP_DELETED,
+	DELETING_TRIP,
 } from '../Actions/types'
 
 const initialState = {
@@ -17,6 +20,7 @@ const initialState = {
 	tripPreviews: [],
 	loadingTrips: false,
 	loadingTrip: false,
+	deletingTrip: false,
 }
 
 export const TripReducer = (state = initialState, action: any) => {
@@ -69,6 +73,22 @@ export const TripReducer = (state = initialState, action: any) => {
 			return {
 				selectedTrip: null,
 				isTripSelected: false,
+			}
+		case DELETING_TRIP:
+			return {
+				...state,
+				deletingTrip: true,
+			}
+		case TRIP_DELETED:
+			return {
+				...state,
+				tripPreviews: action.payload,
+				deletingTrip: false,
+			}
+		case TRIP_DELETION_FAILED:
+			return {
+				...state,
+				deletingTrip: false,
 			}
 		default: {
 			return state
