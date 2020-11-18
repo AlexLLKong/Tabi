@@ -39,6 +39,9 @@ function App() {
 							<Route path="/tripeditor">
 								<TripEditorPage />
 							</Route>
+							<Route path="/tripeditor/:id">
+								<TripEditorPage />
+							</Route>
 							<Route path="/">
 								<LandingPage />
 							</Route>

@@ -25,9 +25,9 @@ router.get('/previews', auth, (req, res) => {
 
 // @route GET api/trip/:id
 // @desc get a user trip by id
-// @access Private
+// @access Public
 
-router.get('/:id', auth, (req, res) => {
+router.get('/:id', (req, res) => {
 	Trip.findById(req.params.id)
 		.then(trip => res.json(trip))
 		.catch(err => console.log(err))

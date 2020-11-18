@@ -7,6 +7,10 @@
 	cursor: pointer;
 	margin-right: 1rem;
 }
+.btn:active {
+	background-color: #ffffff;
+	color: #222222;
+}
 .buttons {
 	display: flex;
 	flex-direction: row;

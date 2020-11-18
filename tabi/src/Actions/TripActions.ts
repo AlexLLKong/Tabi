@@ -14,6 +14,12 @@ import {
 import { ITrip } from '../interfaces'
 import { tokenConfig } from './AuthActions'
 
+// when deploying to Heroku, this should be set to
+// an environment variable
+const ax = axios.create({
+	baseURL: 'http://localhost:3000/api/',
+})
+
 export const selectTrip = (trip: ITrip) => (dispatch: Function) => {
 	dispatch({
 		type: TRIP_SELECTED,
@@ -43,8 +49,7 @@ export const saveTrip = (
 		userID,
 	})
 	console.log(userID)
-	axios
-		.post(`api/trip${_id ? '/' + _id : ''}`, body, config)
+	ax.post(`trip${_id ? '/' + _id : ''}`, body, config)
 		.then(res => {
 			dispatch({
 				type: TRIP_SAVE_SUCCESS,
@@ -61,8 +66,7 @@ export const saveTrip = (
 export const getUserTrips = () => (dispatch: Function, getState: Function) => {
 	dispatch({ type: TRIPS_LOADING })
 	const config = tokenConfig(getState)
-	axios
-		.get('api/trip/previews', config)
+	ax.get('trip/previews', config)
 		.then(res => {
 			dispatch({
 				type: TRIPS_LOADED,
@@ -82,8 +86,7 @@ export const getTrip = (tripID: string) => (
 ) => {
 	dispatch({ type: TRIP_LOADING })
 	const config = tokenConfig(getState)
-	axios
-		.get(`api/trip/${tripID}`, config)
+	ax.get(`trip/${tripID}`, config)
 		.then(res => {
 			dispatch({
 				type: TRIP_LOADED,

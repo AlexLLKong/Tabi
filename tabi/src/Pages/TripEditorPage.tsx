@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import parse from 'html-react-parser'
+import { useLocation } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { getTrip } from '../Actions/TripActions'
 import { ITripReduxProps, ITripEditorPage } from '../interfaces'
 import EditFieldContainer from '../Components/EditFieldContainer'
 import { Wrapper } from '../Components/Wrapper'
@@ -12,7 +14,14 @@ const mockContent: JSX.Element = (
 		<p data-editable="true"></p>
 	</div>
 )
-const TripEditorPage = ({ trip }: ITripEditorPage) => {
+const TripEditorPage = ({ trip, getTrip }: ITripEditorPage) => {
+	const location = useLocation()
+	useEffect(() => {
+		const idRegex = RegExp(/(\w){24}/)
+		const regexResults = idRegex.exec(location.pathname)
+		const tripID = regexResults ? regexResults[0] : ''
+		if (tripID) getTrip(tripID)
+	}, [getTrip, location])
 	let [html, setHtml] = useState<JSX.Element | JSX.Element[] | null>(null)
 	let [style] = useState<HTMLElement>(() => {
 		let sty = document.querySelector<HTMLElement>('#tripCss')
@@ -48,4 +57,4 @@ const TripEditorPage = ({ trip }: ITripEditorPage) => {
 const mapStatetoProps = (state: ITripReduxProps) => ({
 	trip: state.trip,
 })
-export default connect(mapStatetoProps, {})(TripEditorPage)
+export default connect(mapStatetoProps, { getTrip })(TripEditorPage)

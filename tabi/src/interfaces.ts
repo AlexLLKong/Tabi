@@ -91,6 +91,7 @@ export interface ITripReduxProps {
 
 export interface ITripEditorPage {
 	trip: { selectedTrip: ITrip }
+	getTrip(tripID: string): void
 }
 
 export interface IEditFieldContainer {

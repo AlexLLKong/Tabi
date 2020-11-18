@@ -29,6 +29,12 @@ const MyTripsPage = ({ auth, trip, getUserTrips, getTrip }: IMyTripsPage) => {
 			const editHandler = (e: MouseEvent) => {
 				getTrip(preview._id)
 			}
+			const shareHandler = (e: MouseEvent) => {
+				e.preventDefault()
+				navigator.clipboard.writeText(
+					`http://localhost:3000/tripeditor/${preview._id}`
+				)
+			}
 			return (
 				<Card
 					key={`${preview._id}`}
@@ -45,7 +51,7 @@ const MyTripsPage = ({ auth, trip, getUserTrips, getTrip }: IMyTripsPage) => {
 								</Link>
 								<Button
 									className={styles.btn}
-									onClick={tempFn}
+									onClick={shareHandler}
 									children={'Share'}
 								/>
 								<Button
