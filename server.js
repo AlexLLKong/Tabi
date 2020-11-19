@@ -12,7 +12,7 @@ const app = express()
 app.use(express.json({ limit: '16mb' }))
 
 mongoose
-	.connect(config.get('mongoURI'), {
+	.connect(config.get('mongoURI') || process.env.mongoURI, {
 		useUnifiedTopology: true,
 		useCreateIndex: true,
 	})

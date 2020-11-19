@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 				return res.status(400).json({ msg: 'Invalid credentials' })
 			jwt.sign(
 				{ id: user.id },
-				config.get('jwtSecret'),
+				config.get('jwtSecret') || process.env.jwtSecret,
 				{
 					expiresIn: 3600,
 				},
