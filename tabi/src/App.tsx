@@ -5,6 +5,7 @@ import store from './store'
 import { loadUser } from './Actions/AuthActions'
 import Navbar from './Components/Navbar'
 import { LandingPage } from './Pages/LandingPage'
+import { About } from './Pages/About'
 import MyTripsPage from './Pages/MyTripsPage'
 import PickTemplatePage from './Pages/PickTemplatePage'
 import TripEditorPage from './Pages/TripEditorPage'
@@ -54,7 +55,3 @@ function App() {
 }
 
 export default App
-
-function About() {
-	return <h2>About</h2>
-}
