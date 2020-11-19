@@ -17,10 +17,12 @@ import {
 import { ITrip } from '../interfaces'
 import { tokenConfig } from './AuthActions'
 
-// when deploying to Heroku, this should be set to
-// an environment variable
+const baseURL =
+	process.env.NODE_ENV === 'production'
+		? 'https://tabi-ak.herokuapp.com/api/'
+		: 'http://localhost:3000/api/'
 const ax = axios.create({
-	baseURL: 'http://localhost:3000/api/',
+	baseURL: baseURL,
 })
 
 export const selectTrip = (trip: ITrip) => (dispatch: Function) => {
