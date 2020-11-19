@@ -26,6 +26,10 @@ const MyTripsPage = ({
 		</div>
 	)
 	const { tripPreviews } = trip
+	const shareURL =
+		process.env.NODE_ENV === 'production'
+			? 'https://tabi-ak.herokuapp.com/tripeditor/'
+			: 'http://localhost:3000/tripeditor/'
 	const generateCards = (): JSX.Element[] => {
 		return tripPreviews.map<JSX.Element>(preview => {
 			const editHandler = (e: MouseEvent) => {
@@ -33,9 +37,7 @@ const MyTripsPage = ({
 			}
 			const shareHandler = (e: MouseEvent) => {
 				e.preventDefault()
-				navigator.clipboard.writeText(
-					`http://localhost:3000/tripeditor/${preview._id}`
-				)
+				navigator.clipboard.writeText(`${shareURL}${preview._id}`)
 			}
 			const deleteHandler = (e: MouseEvent) => {
 				deleteTrip(preview._id)
