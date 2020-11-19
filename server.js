@@ -10,10 +10,11 @@ import { router as auth } from './routes/api/auth'
 const app = express()
 const db =
 	process.env.NODE_ENV === 'production'
-		? config.get('mongoURI')
-		: process.env.mongoURI
+		? process.env.mongoURI
+		: config.get('mongoURI')
 app.use(express.json({ limit: '16mb' }))
 
+console.log(db)
 mongoose
 	.connect(db, {
 		useUnifiedTopology: true,

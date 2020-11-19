@@ -14,8 +14,8 @@ router.post('/', (req, res) => {
 	const { email, password } = req.body
 	const secret =
 		process.env.NODE_ENV === 'production'
-			? config.get('jwtSecret')
-			: process.env.jwtSecret
+			? process.env.jwtSecret
+			: config.get('jwtSecret')
 	if (!email || !password)
 		return res.status(400).json({ msg: 'Please enter all fields' })
 	User.findOne({ email }).then(user => {
