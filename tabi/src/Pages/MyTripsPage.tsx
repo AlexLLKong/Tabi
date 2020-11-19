@@ -51,18 +51,46 @@ const MyTripsPage = ({
 									<Button
 										className={styles.btn}
 										onClick={editHandler}
-										children={'Edit'}
+										children={
+											<>
+												Edit
+												<i
+													className={`fas fa-edit ${pageStyles.icon}`}
+												></i>
+											</>
+										}
 									/>
 								</Link>
 								<Button
-									className={styles.btn}
+									className={`${styles.btn} ${pageStyles.tooltip}`}
 									onClick={shareHandler}
-									children={'Share'}
+									children={
+										<>
+											Share
+											<i
+												className={`fas fa-link ${pageStyles.icon}`}
+											></i>
+											<span
+												className={
+													pageStyles.tooltiptext
+												}
+											>
+												Copy link to clipboard
+											</span>
+										</>
+									}
 								/>
 								<Button
 									className={styles.btn}
 									onClick={deleteHandler}
-									children={'Delete'}
+									children={
+										<>
+											Delete
+											<i
+												className={`fas fa-trash ${pageStyles.icon}`}
+											></i>
+										</>
+									}
 								/>
 							</div>
 						</div>

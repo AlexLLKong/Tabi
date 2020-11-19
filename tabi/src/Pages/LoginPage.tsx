@@ -37,30 +37,32 @@ const LoginPage = ({
 	}, [error])
 
 	return (
-		<Wrapper>
-			{isAuthenticated ? <RedirectHome /> : null}
-			<h1 className={pageStyles.title}>Login</h1>
-			<form className={styles.form} onSubmit={handleOnSubmit}>
-				<label htmlFor="email">Email</label>
-				<input
-					type="email"
-					name="email"
-					id="email"
-					placeholder="Email"
-					onChange={handleChangeEmail}
-				/>
-				<label htmlFor="password">Password</label>
-				<input
-					type="password"
-					name="password"
-					id="password"
-					placeholder="Password"
-					onChange={handleChangePassword}
-				/>
-				<button className={styles.btn}>Login</button>
-				{msg ? <p className={styles.error}>{msg}</p> : null}
-			</form>
-		</Wrapper>
+		<>
+			<Wrapper>
+				{isAuthenticated ? <RedirectHome /> : null}
+				<h1 className={pageStyles.title}>Login</h1>
+				<form className={styles.form} onSubmit={handleOnSubmit}>
+					<label htmlFor="email">Email</label>
+					<input
+						type="email"
+						name="email"
+						id="email"
+						placeholder="Email"
+						onChange={handleChangeEmail}
+					/>
+					<label htmlFor="password">Password</label>
+					<input
+						type="password"
+						name="password"
+						id="password"
+						placeholder="Password"
+						onChange={handleChangePassword}
+					/>
+					<button className={styles.btn}>Login</button>
+					{msg ? <p className={styles.error}>{msg}</p> : null}
+				</form>
+			</Wrapper>
+		</>
 	)
 }
 

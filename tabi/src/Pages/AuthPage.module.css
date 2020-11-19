@@ -27,5 +27,7 @@ input {
 }
 
 .error {
+	position: relative;
+	top: 0;
 	color: #ff2c2c;
 }

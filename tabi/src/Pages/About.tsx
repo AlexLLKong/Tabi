@@ -13,7 +13,8 @@ export const About: FC = () => (
 			href="https://github.com/AlexLLKong/Tabi"
 			className={pageStyles.ghLink}
 		>
-			GitHub
+			Check out the repo on
+			<i className={`fab fa-github-square ${pageStyles.icon}`}></i>
 		</a>
 	</Wrapper>
 )
