@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import config from 'config'
+import path from 'path'
 import { router as items } from './routes/api/items'
 import { router as template } from './routes/api/template'
 import { router as trip } from './routes/api/trip'
@@ -25,6 +26,14 @@ app.use('/api/template/', template)
 app.use('/api/trip/', trip)
 app.use('/api/users/', users)
 app.use('/api/auth/', auth)
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('tabi/build'))
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'tabi', 'build', 'index.html'))
+	})
+}
+
 const port = process.env.PORT || 5000
 
 app.listen(port, () => {
