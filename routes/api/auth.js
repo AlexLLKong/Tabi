@@ -12,7 +12,10 @@ export const router = Router()
 
 router.post('/', (req, res) => {
 	const { email, password } = req.body
-
+	const secret =
+		process.env.NODE_ENV === 'production'
+			? config.get('jwtSecret')
+			: process.env.jwtSecret
 	if (!email || !password)
 		return res.status(400).json({ msg: 'Please enter all fields' })
 	User.findOne({ email }).then(user => {
@@ -23,7 +26,7 @@ router.post('/', (req, res) => {
 				return res.status(400).json({ msg: 'Invalid credentials' })
 			jwt.sign(
 				{ id: user.id },
-				config.get('jwtSecret') || process.env.jwtSecret,
+				secret,
 				{
 					expiresIn: 3600,
 				},

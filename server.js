@@ -8,11 +8,14 @@ import { router as trip } from './routes/api/trip'
 import { router as users } from './routes/api/users'
 import { router as auth } from './routes/api/auth'
 const app = express()
-
+const db =
+	process.env.NODE_ENV === 'production'
+		? config.get('mongoURI')
+		: process.env.mongoURI
 app.use(express.json({ limit: '16mb' }))
 
 mongoose
-	.connect(config.get('mongoURI') || process.env.mongoURI, {
+	.connect(db, {
 		useUnifiedTopology: true,
 		useCreateIndex: true,
 	})
